@@ -1,0 +1,27 @@
+in MATLAB:
+1. cmd type "edit msfuntmpl_basic"
+2. copy the content in the workfolder
+3. change the name of the function and also within the function (top line)
+4. modify input/output ports
+5. add this line next to the other Registration Methods:
+   block.RegBlockMethod('SetInputPortSamplingMode', @SetInputPortSamplingMode);
+6. disable all other registration methods except output and terminate
+   (note: some of the methods enable to store information and use it next time step)
+7. add the function SetInputPortSamplingMode
+    function SetInputPortSamplingMode(block, idx, fd)
+      block.InputPort(idx).SamplingMode = fd;
+      for i = 1:block.NumOutputPorts
+          block.OutputPort(i).SamplingMode  = fd;
+      end
+8. modify the function output (the logic)
+
+In Simulink:
+1. create a simulink model
+2. create a block: Level-2 MATLAB S-function
+3. provide a name for the function -> same name as function
+4. provide input and output
+5. run the simulink model
+
+tutorial: 
+ https://www.youtube.com/watch?v=X-qVign6BLg
+ https://www.youtube.com/watch?v=ZnvRoGA23uU

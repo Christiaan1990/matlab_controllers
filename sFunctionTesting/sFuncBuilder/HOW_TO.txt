@@ -1,0 +1,10 @@
+1. create a simulink model
+2. create a block S-Function Builder
+3. provide a name for the function
+4. double click on the builder and define inputs/ouputs (see + symbol)
+5. click on build -> now multiple files will be generated (7)
+6. open the wrapper.c
+7. go to the function: <s_func_name>_Outputs_wrapper
+8. add your code here
+9. recompile mex files with: mex <s_func_name>.c <s_func_name>_wrapper.c
+10. run the simulink model
